@@ -12,7 +12,8 @@ class Pessoa {
   public $nome;
   public $idade;
   public $created_at;
-  public $user;
+  public $updated_at;
+  /*public $user;*/
   
 /**
    * Método responsável por cadastrar uma nova pessoa no banco
@@ -27,7 +28,7 @@ class Pessoa {
                             'nome'       => $this->nome,
                             'idade'      => $this->idade,
                             'created_at' => date("Y-m-d H:i:s"),
-                            'user'       => $this->user
+                            /*'user'       => $this->user*/
                        ]);
 
     //RETORNAR SUCESSO
@@ -44,7 +45,7 @@ class Pessoa {
                                            'nome'       => $this->nome,
                                            'idade'      => $this->idade,
                                            'updated_at' =>  date("Y-m-d H:i:s"),
-                                           'user' => $this->user
+                                           /*'user' => $this->user*/
                                          ]);
   }
 
