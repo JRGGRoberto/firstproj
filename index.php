@@ -9,18 +9,23 @@
 
     $pessoa = Pessoa::gets();
 
-    include './include/header.php';
-
+    /*
     echo '<pre>';
     print_r( $pessoa );
     echo '</pre>';
+    */
+   $dados = '';
+    foreach ( $pessoa as $pes){
 
 
-    foreach ( $pessoa as $chave){
-        echo $chave->nome .'</br>';
+      $dados .= '<tr>';
+      $dados .= ' <td>'.  $pes->nome .'</td>';
+      $dados .= ' <td>'.  $pes->idade .'</td>';
+      $dados .= '</tr>';
     }
-
-
+    
+    include './include/header.php';
+    include './include/conteudo.php';
     include './include/footer.php';
 
 ?>
