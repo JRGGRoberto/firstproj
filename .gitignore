@@ -1,4 +1,5 @@
 app/Db/Database.php
+app\Db\Database.php
 
 # Ignore os arquivos de sistema do Mac
 .DS_store
