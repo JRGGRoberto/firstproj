@@ -6,30 +6,25 @@ use \App\Db\Database;
 use \PDO;
 use \App\Entity\UuiuD;
 
-class Pessoa {
+class Cidade {
 
-  public $id;
-  public $nome;
-  public $idade;
   public $id_cidade;
+  public $nome;
   public $created_at;
-  public $update_at;
+  public $updated_at;
   
 /**
-   * Método responsável por cadastrar uma nova pessoa no banco
+   * Método responsável por cadastrar uma nova cidade no banco
    * @return boolean
    */
   public function cadastrar(){
     //INSERIR A REGISTRO NO BANCO
     $newId = UuiuD::gera(); //exec('uuidgen -r');
-    $obDatabase = new Database('pessoa');
+    $obDatabase = new Database('cidade');
     $obDatabase->insert([
-                            'id'        => $newId,
-                            'nome'      => $this->nome,
-                            'idade'     => $this->idade,
-                            'id_cidade'   => $this->id_cidade,
-                            'create_at' => date("Y-m-d H:i:s"),
-                            /*'user'       => $this->user*/
+                            'id_cidade'  => $newId,
+                            'nome'       => $this->nome,
+                            'created_at' => date("Y-m-d H:i:s"),
                        ]);
 
     //RETORNAR SUCESSO
@@ -38,16 +33,13 @@ class Pessoa {
 
 
     /**
-   * Método responsável por atualizar a pessoa no banco
+   * Método responsável por atualizar a cidade no banco
    * @return boolean
    */
   public function atualizar(){
-    return (new Database('pessoa'))->update('id = '.$this->id,[
+    return (new Database('cidade'))->update('id_cidade = '.$this->id_cidade,[
                                            'nome'       => $this->nome,
-                                           'idade'      => $this->idade,
-                                           'id_cidade'   => $this->id_cidade,
-                                           'update_at' =>  date("Y-m-d H:i:s"),
-                                           /*'user' => $this->user*/
+                                           'updated_at' =>  date("Y-m-d H:i:s"),
                                          ]);
   }
 
@@ -57,7 +49,7 @@ class Pessoa {
    * @return boolean
    */
   public function excluir(){
-    return (new Database('pessoa'))->delete('id = "'.$this->id .'"');
+    return (new Database('cidade'))->delete('id_cidade = "'.$this->id_cidade .'"');
   }
 
   /**
@@ -68,7 +60,7 @@ class Pessoa {
    * @return array
    */
   public static function gets($where = null, $order = null, $limit = null){
-    return (new Database('pessoav'))->select($where,$order,$limit)
+    return (new Database('cidade'))->select($where,$order,$limit)
                                   ->fetchAll(PDO::FETCH_CLASS,self::class);
   }
 
@@ -80,8 +72,8 @@ class Pessoa {
    * @return array
    */
   public static function get($id){
-    $where = ' id = "'.$id.'" ';
-    return (new Database('pessoa'))->select($where)
+    $where = ' id_cidade = "'.$id.'" ';
+    return (new Database('cidade'))->select($where)
                                      ->fetchObject(self::class);
   }
 
@@ -92,7 +84,7 @@ class Pessoa {
    * @return integer
    */
   public static function getQntd($where = null){
-    return (new Database('pessoa'))->select($where, null, null, 'COUNT(*) as qtd')
+    return (new Database('cidade'))->select($where, null, null, 'COUNT(*) as qtd')
                                   ->fetchObject()
                                   ->qtd;
   }
